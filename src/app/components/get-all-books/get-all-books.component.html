@@ -1,0 +1,80 @@
+<div class="main-container">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="head1" fxLayout="row" fxLayoutGap=" 5px">
+            <p class="text1">Books</p>
+            <p class="text2">({{bookcount}}_items)</p> 
+        </div>
+        <div class="sorting">
+            <mat-form-field appearance="fill">
+                <mat-label *ngIf="hideTitle">Sort by relevance</mat-label>
+                <mat-select style="height: 10px;">
+                    <mat-option (click)="sortlowtohigh()" value="option1">Price:Low to High</mat-option>
+                    <mat-option (click)="sorthightolow()" value="option2">Price:High to Low</mat-option>
+                    <mat-option (click)="newestarrivalse()" value="option3">Newest Arrivals</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="example-spacer"></div>
+
+    </div>
+</div>
+
+<div fxLayout="row wrap" class="all-books" fxLayoutAlign="start center" fxLayoutGap="20px">
+
+    <div *ngFor="let book of booksArray">
+
+        <div class="book-con" fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+            <div class="img" (click)="onBookDetails(book)">
+                <img src="../../../assets/Image 11.png" width="105px" height="135px" alt="">
+            </div>
+        </div>
+
+        <div class="details" fxLayout="column" fxLayoutAlign="space-evenly center">
+            <b class="name-container">
+                {{book.bookName}}
+            </b>
+            <mat-card-subtitle class="authorName">
+                by {{book.author}}
+            </mat-card-subtitle>
+
+
+             <div fxLayout="row" fxLayoutAlign="space-evenly center" class='ratingbox'>
+                <button class="green-btn" mat-raised-button  fxLayoutAlign="center center">
+                    4.5<img src="../../../assets/star_white_24dp.svg" height="10px" width="10px" class="star">
+                </button> ({{book.quantity}})
+            </div>
+
+            <div class="price" fxLayout="row" fxLayoutAlign="space-evenly center">
+                <span>Rs. {{book.price}}</span>
+            </div> 
+        </div>
+
+        <div fxLayout="column" class="cart-wish" >
+            <mat-icon class="fav-icon">favorite</mat-icon>
+            <button mat-icon-button  aria-label="Example cart icon" class="cart-btn">
+                <img src="../../../assets/cart.svg" alt="" class="profile-icon" height="20px" width="20px">
+            </button>
+        </div>
+    </div>
+    <div class="pagination" fxHide.lt-md>
+        <a href="#">
+            <mat-icon>arrow_circle_left</mat-icon>
+        </a>
+        <a href="#">1</a>
+        <a class="active" href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">6</a>
+        <a href="#">7</a>
+        <a href="#">8</a>
+        <a href="#">18</a>
+        <a href="#">...</a>
+        <a href="#">
+            <mat-icon>arrow_circle_right</mat-icon>
+        </a>
+    </div>
+
+</div>
+

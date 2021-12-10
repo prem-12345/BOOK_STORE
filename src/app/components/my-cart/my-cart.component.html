@@ -1,0 +1,215 @@
+<app-dashboard></app-dashboard>
+
+<div class="cart-container">
+
+    <div class="section1" fxLayout="column" fxLayoutAlign="start start">
+
+        <div class="heading" fxLayout="row">
+            <p class="text1">Home /</p>
+            <p class="text2">My cart</p>
+        </div>
+
+        <div class="expansion">
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            My cart ({{count}})
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="content" fxLayout="row" *ngFor="let cart of cartitems">
+
+                        <div class="img-div">
+                            <img src="../../../assets/Image 11@2x.png" alt="" class="book">
+                        </div>
+
+                        <div>
+                            <div fxLayout="column">
+                                <div class="details">
+                                    <p class="bookname">{{cart.product_id.bookName}}</p>
+                                    <p class="author">by {{cart.product_id.author}}</p>
+                                    <p class="actualprice">Rs.
+                                        {{cart.product_id.price}}
+                                </div>
+
+                                <div class="plus-minus">
+
+                                    <div fxLayout="row">
+
+                                        <button mat-icon-button class="plusminus" (click)="countdecrease(cart)">
+                                            <mat-icon class="material-icons-outlined">remove_circle_outline</mat-icon>
+                                        </button>
+
+                                        <p class="count">{{ordercount}}</p>
+
+
+                                        <button mat-icon-button class="plusminus" (click)="countincrease(cart)">
+                                            <mat-icon class="material-icons-outlined">add_circle_outline</mat-icon>
+                                        </button>
+
+                                        <button class="remove" (click)="removecartitem(cart)">Remove</button>
+
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <mat-divider style="width: 800px; margin-left: -90px;" ></mat-divider>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div>
+                        <button class="place-order" *ngIf="displayButton" (click)="showDetails()">Place
+                            Order</button>
+                    </div>
+
+
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+
+
+    <div class="expansion2" *ngIf="!displayaddresss">
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Customer Details
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <form [formGroup]="customerDetailsForm">
+
+                    <div class="details2" fxLayout="column" fxLayoutGap="30px">
+
+
+                        <div class="content1" fxLayout="row" fxLayoutGap="20px">
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-card-subtitle class="sub-title">Full Name</mat-card-subtitle>
+                                    <input matInput placeholder="Prem Patil" class="input-field" type="text"
+                                        formControlName="fullName">
+                                </mat-form-field>
+
+                            </div>
+
+                            <div class="">
+
+                                <mat-form-field appearance="outline">
+                                    <mat-card-subtitle class="sub-title">Mobile Number</mat-card-subtitle>
+                                    <input matInput placeholder="7387557696" class="input-field"
+                                        formControlName="phoneNumber">
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+
+                        <div class="content2">
+                            <mat-form-field appearance="outline">
+                                <mat-card-subtitle class="sub-title">Address</mat-card-subtitle>
+                                <input matInput placeholder="address" class="input-field" formControlName="fullAddress">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="content3" fxLayout="row" fxLayoutGap="20px">
+                            <div>
+
+                                <mat-form-field appearance="outline">
+                                    <mat-card-subtitle class="sub-title">City/Town</mat-card-subtitle>
+                                    <input matInput placeholder="Enter City/Town" class="input-field"
+                                        formControlName="city">
+                                </mat-form-field>
+
+                            </div>
+
+                            <div>
+
+                                <mat-form-field appearance="outline">
+                                    <mat-card-subtitle class="sub-title">State</mat-card-subtitle>
+                                    <input matInput placeholder="Enter State" class="input-field"
+                                        formControlName="state">
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                        <div fxLayout="column" fxLayoutGap=10px style="margin-left: 102px;">
+                        <div>
+                            type
+                        </div>
+                        <div fxLayout="row" fxLayoutGap=20px>
+                            <mat-radio-group aria-label="Select an option" formControlName="addressType">
+                                <mat-radio-button value="Home">Home</mat-radio-button>
+                                <mat-radio-button value="work">work</mat-radio-button>
+                                <mat-radio-button value="Other">Other</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div>
+                            <button class="continue" (click)="submit()" *ngIf="displayOrders" (click)="showOrderDetails()">Continue</button>
+                        </div>
+                    </div>
+
+                        <!-- <label id="example-radio-group-label">Pick your favorite season</label>
+                        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                            [(ngModel)]="favoriteSeason">
+                            <mat-radio-button class="example-radio-button" *ngFor="let season of seasons"
+                                [value]="season">
+                                {{season}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                        <div>Your favorite season is: {{favoriteSeason}}</div> -->
+
+
+                    </div>
+
+                </form>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+
+    <div class="expansion3" *ngIf="!displayOrders">
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Order summary
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="content" fxLayout="row" *ngFor="let cart of cartitems">
+
+                    <div class="img-div">
+                        <img src="../../../assets/Image 11@2x.png" alt="" class="book">
+                    </div>
+
+                    <div>
+                        <div fxLayout="column">
+                            <div class="details">
+                                <p class="bookname">{{cart.product_id.bookName}}</p>
+                                <p class="author">by {{cart.product_id.author}}</p>
+                                <p class="actualprice">Rs.
+                                    {{cart.product_id.price}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div>
+                    <button class="place-order" (click)="Checkout()">Checkout</button>
+                </div>
+
+                
+
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+</div>

@@ -1,0 +1,110 @@
+<app-dashboard></app-dashboard>
+<div class="container" fxLayout="column" fxLayoutGap="25px">
+
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px" fxLayout.lt-md="column">
+
+        <div fxLayout="column" fxLayoutGap="15px">
+
+            <div class="header">
+                <button mat-button class="head0">Home</button>
+                <p class="head1">/ Book(01)</p>
+            </div>
+            <div fxLayout="column" >
+                <img src="../../../assets/Image 11@2x.png" alt="" height="90px" width="70px" class="img01">
+                <img src="../../../assets/Image 46@2x.png" alt="" height="90px" width="70px" class="img02">
+            </div>
+            <img class="book" src="../../../assets/Image 11@2x.png">
+
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+
+                <button mat-flat-button type="submit" color="primary" class="addtobagbutton" *ngIf="addToBagHide" (click)="addtobag()">Add to bag</button>
+
+                <div fxLayout="row" *ngIf="hideCount">
+
+                    <button mat-icon-button class="plusminus" (click)="decreaseCount()">
+                        <mat-icon class="material-icons-outlined">remove_circle_outline</mat-icon>
+                    </button>
+
+                    <p class="count">{{orderCount}}</p>
+
+                    <button mat-icon-button class="plusminus" (click)="increaseCount()">
+                        <mat-icon class="material-icons-outlined">add_circle_outline</mat-icon>
+                    </button>
+
+                </div>
+
+                <button mat-flat-button type="submit" color="primary" class="wishlistbutton" (click)="addtowishlist()">
+                    <mat-icon class="fav-icon">favorite</mat-icon>
+                   <p class="wish-text"> Wishlist</p>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="book-data"> 
+
+            <p class="bookname">{{data?.bookName}}</p>
+
+             <p class="author">by {{data?.author}}</p>
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+
+                <div class="ratingbox">
+
+                    <p class="rating">4.5</p>
+                    <mat-icon class="rating_star">star</mat-icon>
+
+                </div>
+
+                <p class="ratingno">(20)</p>
+
+            </div> 
+
+            <p class="actualprice" *ngIf="data?.discountPrice==0">Rs. {{data?.price}}</p>
+
+            <div fxLayout="row" fxLayoutGap="10px">
+                <p class="actualprice" *ngIf="data?.discountPrice>0">Rs. {{data?.price-data.discountPrice}}</p>
+                <p class="discountPrice" *ngIf="data?.discountPrice>0"><del>Rs. {{data?.price}}</del></p>
+            </div>
+
+            <hr>
+
+            <ul class="list">
+                <li class="bookdetails">Book Detail</li>
+            </ul>
+
+            <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores quae pariatur
+                laboriosam minima architecto sint facere, eaque dolore est voluptate consequatur et tempora ex magnam
+                ipsam
+                assumenda ad beatae quasi error dolores aut culpa saepe deserunt. Sed, optio. Commodi itaque blanditiis
+                sequi est incidunt eveniet quidem accusantium, id quas tempora.</p>
+            <hr> 
+
+
+            <p class="feedbackhead">Customer Feedback</p>
+            <div class="reviewbox" fxLayout="column">
+                <p class="ratinghead">Overall rating</p>
+
+                <div class="star-widget" [ngClass.xs]="'small'">
+                    <input type="radio" name="rate" id="rate-5"  value="5">
+                    <label for="rate-5" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-4"  value="4">
+                    <label for="rate-4" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-3"  value="3">
+                    <label for="rate-3" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-2"  value="2">
+                    <label for="rate-2" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-1"  value="1">
+                    <label for="rate-1" class="fas fa-star"></label>
+                </div>
+
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="20"
+                    placeholder="write your review" class="searchinput" [ngStyle.lt-md]="{'width.VW': 80}"
+                   ></textarea>
+                <button class="reviewsubmit" mat-flat-button color="primary">
+                    <p class="submitbotton">Submit</p>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
