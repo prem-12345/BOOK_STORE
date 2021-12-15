@@ -15,7 +15,7 @@ export class SignUpComponent implements OnInit {
   signupForm !: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder,private router: Router, private userService:UserServiceService ,private _snackBar:MatSnackBar) { }
+  constructor(private formBuilder: FormBuilder,public router: Router, private userService:UserServiceService ,private _snackBar:MatSnackBar) { }
 
   ngOnInit() {
       this.signupForm = this.formBuilder.group({
@@ -47,6 +47,7 @@ export class SignUpComponent implements OnInit {
     
     this.userService.signUp(payload).subscribe((response:any)=>{
       console.log("data is in sign-up component",response);
+      this.router.navigate(['/log-in'])
       this._snackBar.open('Registration Successful', '',{
         duration:2000,
       })

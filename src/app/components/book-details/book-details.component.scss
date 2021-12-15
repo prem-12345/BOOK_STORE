@@ -274,3 +274,78 @@
    margin-top: -22px; 
    color: white;
 }
+
+
+.dispaly-rating{
+   position: relative;
+   left: 35px;
+   top: -18px;
+}
+
+.display-comment{
+   position: relative;
+   left: 35px;
+}
+
+.user-name{
+   position: relative;
+   top: -12px;
+   left: 13px;
+}
+
+.feed-container{
+   position: relative;
+   top: 20px;
+   width: 579px;
+   // border: 1px solid grey;
+}
+
+
+
+.center{
+   position: relative;
+   }
+   .center .stars{
+   
+   width: 500px;
+   text-align: start;
+   }
+   .stars input{
+   display: none;
+   }
+   .stars label{
+   float: left;
+   font-size: 30px;
+   color: lightgrey;
+   margin: 0 5px;
+   text-shadow: 1px 1px #bbb;
+   }
+   .stars label:before{
+   content: '★';
+   }
+   .stars input:checked ~ label{
+   color: gold;
+   text-shadow: 1px 1px #c60;
+   }
+   .stars:not(:checked) > label:hover,
+   .stars:not(:checked) > label:hover ~ label{
+   color: gold;
+   }
+   .stars input:checked > label:hover,
+   .stars input:checked > label:hover ~ label{
+   color: gold;
+   text-shadow: 1px 1px goldenrod;
+   }
+   .stars .result:before{
+   position: absolute;
+   content: "";
+   width: 100%;
+   left: 50%;
+   transform: translateX(-47%);
+   bottom: -30px;
+   font-size: 30px;
+   font-weight: 500;
+   color: gold;
+   font-family: 'Poppins', sans-serif;
+   display: none;
+   }

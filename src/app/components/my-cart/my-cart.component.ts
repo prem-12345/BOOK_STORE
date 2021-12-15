@@ -16,12 +16,8 @@ export class MyCartComponent implements OnInit {
   displayaddresss:boolean=true;
   displayOrders:boolean=true;
   orderlist: any = [];
+  step = 0;
  
-
-  // favoriteSeason: any;
-  // seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
-  
-
   customerDetailsForm !: FormGroup;
 
   constructor(private bookService: BooksService,private formBuilder: FormBuilder,private routes: Router) { }
@@ -145,6 +141,24 @@ export class MyCartComponent implements OnInit {
       (error:any) => console.log(error)
     )
   }
+
+
+  
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
+
+
   }
 
   

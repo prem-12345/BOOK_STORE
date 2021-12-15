@@ -11,11 +11,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
+
+  componentName = 'log-in';
+
   signupShown: boolean = true;
   
   loginForm !: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder,private router: Router,private userService:UserServiceService, private authenticationService: AuthenticationService ,private _snackBar: MatSnackBar) { }
+  constructor(private formBuilder: FormBuilder,
+    public router: Router,
+    public userService:UserServiceService, 
+    private authenticationService: AuthenticationService ,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 

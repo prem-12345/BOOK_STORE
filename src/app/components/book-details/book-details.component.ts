@@ -9,11 +9,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class BookDetailsComponent implements OnInit {
 
-  orderCount = 0;
+  orderCount = 1;
   data: any;
   bookId: any;
   hideCount:boolean=false;
   addToBagHide:boolean=true;
+
+  rating:any;
+  value: any;
+  comment: any;
+  currentfeedback: any;
+  bookStoreArray: any = [];
+  
 
 
   constructor( private bookService:BooksService, private _snackBar: MatSnackBar) { }
@@ -22,6 +29,7 @@ export class BookDetailsComponent implements OnInit {
     this.bookId = localStorage.getItem("bookId");
     console.log(this.bookId);
     this.getbookdetail();
+    this.getfeedBack();
   }
 
 
@@ -97,6 +105,36 @@ export class BookDetailsComponent implements OnInit {
       (error:any) => console.log(error)
     )
   }
+
+
+  addFeedback() {
+    let data = {
+      rating: this.value,
+      comment: this.comment,
+      product_id: this.bookId
+    }
+
+    this.bookService.addFeedbackService(data).subscribe((response: any) => {
+      console.log("the response", response);
+      this.getfeedBack();
+
+    })
+  }
+
+  getfeedBack() {
+    let data = {
+      product_id: this.bookId
+    }
+    this.bookService.getfeedBack(data).subscribe((response: any) => {
+        console.log("Feedback",response);
+        this.bookStoreArray = response.result.reverse();
+  })
+}
+
+
+
+
+
 
 
   }

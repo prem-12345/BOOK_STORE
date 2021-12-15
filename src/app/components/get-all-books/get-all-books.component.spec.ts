@@ -1,14 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GetAllBooksComponent } from './get-all-books.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NgxPaginationModule } from 'ngx-pagination';
 
-describe('GetAllBooksComponent', () => {
+
+fdescribe('GetAllBooksComponent', () => {
   let component: GetAllBooksComponent;
   let fixture: ComponentFixture<GetAllBooksComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GetAllBooksComponent ]
+      declarations: [ GetAllBooksComponent ],
+
+      imports:[
+        RouterTestingModule,
+        HttpClientTestingModule,
+        MatSnackBarModule,
+        NgxPaginationModule
+      ]
+
     })
     .compileComponents();
   });

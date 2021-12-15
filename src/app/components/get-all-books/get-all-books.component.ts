@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BooksService } from '../services/booksService/books.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-get-all-books',
@@ -12,8 +13,12 @@ export class GetAllBooksComponent implements OnInit {
   bookcount: any;
   token: any;
   hideTitle:boolean=true;
+  data: any;
 
-  constructor( private router: Router, private booksService: BooksService) { }
+
+  totalLength:any;
+  page:number = 1;
+  constructor( private router: Router, private booksService: BooksService ,private _snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.token = localStorage.getItem('token')
@@ -28,6 +33,8 @@ export class GetAllBooksComponent implements OnInit {
 
         this.booksArray = response.result;
         this.bookcount = response.result.length;
+
+        this.totalLength = response.result.length;
 
         console.log("getBooksArray", this.booksArray);
 
@@ -54,6 +61,32 @@ export class GetAllBooksComponent implements OnInit {
     this.booksArray.reverse()
     this.hideTitle=false;
   }
+
+  
+  addtowishlist(book:any) {
+    this.booksService.addwishlist(book._id).subscribe(
+      (response: any) => {
+        console.log(response);
+        this._snackBar.open('book added to wishlist successful', '', {
+          duration: 2000,
+        })
+      },
+      (error:any) => console.log(error)
+    )
+  }
+
+  addtobag(book:any){
+    this.booksService.addcartitem(book._id).subscribe((response) => {
+      console.log(response);
+      this._snackBar.open('book added to cart successful', '', {
+        duration: 2000,
+      })
+    },
+      (error) => console.log(error)
+    )
+  }
+
+
 }
 
 

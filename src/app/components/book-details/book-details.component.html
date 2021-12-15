@@ -1,4 +1,5 @@
 <app-dashboard></app-dashboard>
+
 <div class="container" fxLayout="column" fxLayoutGap="25px">
 
     <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px" fxLayout.lt-md="column">
@@ -9,7 +10,7 @@
                 <button mat-button class="head0">Home</button>
                 <p class="head1">/ Book(01)</p>
             </div>
-            <div fxLayout="column" >
+            <div fxLayout="column">
                 <img src="../../../assets/Image 11@2x.png" alt="" height="90px" width="70px" class="img01">
                 <img src="../../../assets/Image 46@2x.png" alt="" height="90px" width="70px" class="img02">
             </div>
@@ -17,7 +18,8 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between start">
 
-                <button mat-flat-button type="submit" color="primary" class="addtobagbutton" *ngIf="addToBagHide" (click)="addtobag()">Add to bag</button>
+                <button mat-flat-button type="submit" color="primary" class="addtobagbutton" *ngIf="addToBagHide"
+                    (click)="addtobag()">Add to bag</button>
 
                 <div fxLayout="row" *ngIf="hideCount">
 
@@ -35,17 +37,17 @@
 
                 <button mat-flat-button type="submit" color="primary" class="wishlistbutton" (click)="addtowishlist()">
                     <mat-icon class="fav-icon">favorite</mat-icon>
-                   <p class="wish-text"> Wishlist</p>
+                    <p class="wish-text"> Wishlist</p>
                 </button>
 
             </div>
         </div>
 
-        <div class="book-data"> 
+        <div class="book-data">
 
             <p class="bookname">{{data?.bookName}}</p>
 
-             <p class="author">by {{data?.author}}</p>
+            <p class="author">by {{data?.author}}</p>
 
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
 
@@ -58,7 +60,7 @@
 
                 <p class="ratingno">(20)</p>
 
-            </div> 
+            </div>
 
             <p class="actualprice" *ngIf="data?.discountPrice==0">Rs. {{data?.price}}</p>
 
@@ -78,33 +80,53 @@
                 ipsam
                 assumenda ad beatae quasi error dolores aut culpa saepe deserunt. Sed, optio. Commodi itaque blanditiis
                 sequi est incidunt eveniet quidem accusantium, id quas tempora.</p>
-            <hr> 
+            <hr>
 
 
             <p class="feedbackhead">Customer Feedback</p>
             <div class="reviewbox" fxLayout="column">
                 <p class="ratinghead">Overall rating</p>
-
-                <div class="star-widget" [ngClass.xs]="'small'">
-                    <input type="radio" name="rate" id="rate-5"  value="5">
-                    <label for="rate-5" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-4"  value="4">
-                    <label for="rate-4" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-3"  value="3">
-                    <label for="rate-3" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-2"  value="2">
-                    <label for="rate-2" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-1"  value="1">
-                    <label for="rate-1" class="fas fa-star"></label>
+                <div class="center">
+                    <div class="stars">
+                        <input type="radio" id="one" [(ngModel)]="value" name="rate" value="1">
+                        <label for="one"></label>
+                        <input type="radio" id="two" [(ngModel)]="value" name="rate" value="2">
+                        <label for="two"></label>
+                        <input type="radio" id="three" [(ngModel)]="value" name="rate" value="3">
+                        <label for="three"></label>
+                        <input type="radio" id="four" [(ngModel)]="value" name="rate" value="4">
+                        <label for="four"></label>
+                        <input type="radio" id="five" [(ngModel)]="value" name="rate" value="5">
+                        <label for="five"></label>
+                    </div>
                 </div>
 
-                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="20"
-                    placeholder="write your review" class="searchinput" [ngStyle.lt-md]="{'width.VW': 80}"
-                   ></textarea>
+                <textarea matInput placeholder="write your review" class="searchinput" [(ngModel)]="comment"></textarea>
+
                 <button class="reviewsubmit" mat-flat-button color="primary">
-                    <p class="submitbotton">Submit</p>
+                    <p class="submitbotton" (click)="addFeedback()">Submit</p>
                 </button>
             </div>
+
+            <div fxLayout="column wrap" fxLayoutAlign="start start" fxLayoutGap="20px"
+                *ngFor="let item of bookStoreArray" class="feed-container">
+
+                <div>
+                    <div fxLayout="row">
+                        <mat-icon>account_circle</mat-icon>
+                        <p class="user-name">{{item.user_id.fullName}}</p>
+                    </div>
+                    <div>
+                        <p class="dispaly-rating"> {{item.rating}}-star</p>
+                        <div class="fa fa-star checked"></div>
+
+                    </div>
+                    <div>
+                        <p class="display-comment">{{item.comment}}</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

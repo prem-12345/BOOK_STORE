@@ -27,6 +27,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatRadioModule} from '@angular/material/radio';
 import { OrderplacedComponent } from './components/orderplaced/orderplaced.component';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatSelectModule,
     MatExpansionModule,
     MatRadioModule,
-    MatDividerModule
+    MatDividerModule,
+    NgxPaginationModule
     
     
 

@@ -2,9 +2,9 @@
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <div class="head1" fxLayout="row" fxLayoutGap=" 5px">
             <p class="text1">Books</p>
-            <p class="text2">({{bookcount}}_items)</p> 
+            <p class="text2">({{bookcount}}_items)</p>
         </div>
-        <div class="sorting">
+        <div class="sorting" fxLayout="row wrap" [ngClass.sm]="'sorting-div'">
             <mat-form-field appearance="fill">
                 <mat-label *ngIf="hideTitle">Sort by relevance</mat-label>
                 <mat-select style="height: 10px;">
@@ -21,7 +21,10 @@
 
 <div fxLayout="row wrap" class="all-books" fxLayoutAlign="start center" fxLayoutGap="20px">
 
-    <div *ngFor="let book of booksArray">
+    <div *ngFor="let book of booksArray | 
+                paginate: { itemsPerPage: 9, 
+                            currentPage: page,
+                            totalItems: totalLength }">
 
         <div class="book-con" fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
             <div class="img" (click)="onBookDetails(book)">
@@ -38,43 +41,29 @@
             </mat-card-subtitle>
 
 
-             <div fxLayout="row" fxLayoutAlign="space-evenly center" class='ratingbox'>
-                <button class="green-btn" mat-raised-button  fxLayoutAlign="center center">
+            <div fxLayout="row" fxLayoutAlign="space-evenly center" class='ratingbox'>
+                <button class="green-btn" mat-raised-button fxLayoutAlign="center center">
                     4.5<img src="../../../assets/star_white_24dp.svg" height="10px" width="10px" class="star">
                 </button> ({{book.quantity}})
             </div>
 
-            <div class="price" fxLayout="row" fxLayoutAlign="space-evenly center">
-                <span>Rs. {{book.price}}</span>
-            </div> 
+            <div class="price" fxLayout="row" fxLayoutAlign="space-evenly center" style="margin-left: -75px;"
+                fxLayoutGap="10px">
+                <p class="actualprice" *ngIf="book?.discountPrice>0">Rs. {{book?.price-book.discountPrice}}</p>
+                <p class="discountPrice" *ngIf="book?.discountPrice>0"><del>Rs. {{book?.price}}</del></p>
+            </div>
         </div>
 
-        <div fxLayout="column" class="cart-wish" >
-            <mat-icon class="fav-icon">favorite</mat-icon>
-            <button mat-icon-button  aria-label="Example cart icon" class="cart-btn">
-                <img src="../../../assets/cart.svg" alt="" class="profile-icon" height="20px" width="20px">
+        <div fxLayout="column" class="cart-wish">
+            
+            <mat-icon class="fav-icon" (click)="addtowishlist(book)">favorite</mat-icon>
+            <button mat-icon-button aria-label="Example cart icon" class="cart-btn" (click)="addtobag(book)">
+                <img src="../../../assets/cart.svg" alt="" class="profile-icon" height="28px" width="17px">
             </button>
         </div>
     </div>
-    <div class="pagination" fxHide.lt-md>
-        <a href="#">
-            <mat-icon>arrow_circle_left</mat-icon>
-        </a>
-        <a href="#">1</a>
-        <a class="active" href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">6</a>
-        <a href="#">7</a>
-        <a href="#">8</a>
-        <a href="#">18</a>
-        <a href="#">...</a>
-        <a href="#">
-            <mat-icon>arrow_circle_right</mat-icon>
-        </a>
+
+    <div class="pagination-div" fxLayout="row" fxLayoutAlign="start">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
-
 </div>
-

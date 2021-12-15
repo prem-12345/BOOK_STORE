@@ -78,10 +78,11 @@
  .plusminus {
     width     : 38px !important;
     height    : 38px !important;
-    background: #FAFAFA 0% 0% no-repeat padding-box !important;
     opacity   : 1 !important;
     margin-left: 40px;
-    border: none;
+    border: 1px solid gray;
+    border-radius: 50%;
+    background-color: white;
  }
 
  .count {
@@ -176,3 +177,21 @@
  .example-radio-button {
    margin: 5px;
  }
+
+:host ::ng-deep .mat-radio-outer-circle{
+   border-style: none;
+ }
+
+ .minus{
+   font-size: 50px;
+   position: relative;
+   top: -15px;
+   color: grey;
+}
+
+.plus{
+   font-size: 25px;
+   position: relative;
+   color: grey;
+}
+ 

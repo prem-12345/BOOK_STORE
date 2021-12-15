@@ -1,14 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WishlistComponent } from './wishlist.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('WishlistComponent', () => {
+fdescribe('WishlistComponent', () => {
   let component: WishlistComponent;
   let fixture: ComponentFixture<WishlistComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WishlistComponent ]
+      declarations: [ WishlistComponent ],
+      imports:[
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   });

@@ -1,14 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardComponent } from './dashboard.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatMenuModule } from '@angular/material/menu';
 
-describe('DashboardComponent', () => {
+fdescribe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      declarations: [ DashboardComponent ],
+
+      imports:[
+        RouterTestingModule,
+        MatMenuModule
+      ]
     })
     .compileComponents();
   });

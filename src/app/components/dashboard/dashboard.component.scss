@@ -1,3 +1,5 @@
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 *{
     text-decoration: none;
 }
@@ -156,5 +158,10 @@ mat-toolbar {
 .titles{
     padding: 30px 105px 5px 15px;
 }
+
+.tool-div{
+    width: 658px;
+}
+
 
 
